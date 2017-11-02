@@ -42,6 +42,12 @@
             this.IDCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NameCol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.alwaysOnTop = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.commentBox = new System.Windows.Forms.TextBox();
+            this.submitComment = new System.Windows.Forms.Button();
+            this.feedBack = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -164,7 +170,6 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.Click += new System.EventHandler(this.listView1_Click);
             // 
             // IDCol
@@ -187,11 +192,76 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(365, 474);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(148, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Close";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // alwaysOnTop
+            // 
+            this.alwaysOnTop.AutoSize = true;
+            this.alwaysOnTop.Location = new System.Drawing.Point(424, 17);
+            this.alwaysOnTop.Name = "alwaysOnTop";
+            this.alwaysOnTop.Size = new System.Drawing.Size(92, 17);
+            this.alwaysOnTop.TabIndex = 3;
+            this.alwaysOnTop.Text = "Always on top";
+            this.alwaysOnTop.UseVisualStyleBackColor = true;
+            this.alwaysOnTop.CheckStateChanged += new System.EventHandler(this.alwaysOnTop_CheckStateChanged);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(148, 13);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(237, 23);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Show Threads";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // commentBox
+            // 
+            this.commentBox.Enabled = false;
+            this.commentBox.Location = new System.Drawing.Point(18, 445);
+            this.commentBox.Multiline = true;
+            this.commentBox.Name = "commentBox";
+            this.commentBox.Size = new System.Drawing.Size(247, 52);
+            this.commentBox.TabIndex = 5;
+            this.commentBox.TextChanged += new System.EventHandler(this.commentBox_TextChanged);
+            // 
+            // submitComment
+            // 
+            this.submitComment.Enabled = false;
+            this.submitComment.Location = new System.Drawing.Point(271, 445);
+            this.submitComment.Name = "submitComment";
+            this.submitComment.Size = new System.Drawing.Size(75, 52);
+            this.submitComment.TabIndex = 6;
+            this.submitComment.Text = "Submit";
+            this.submitComment.UseVisualStyleBackColor = true;
+            this.submitComment.Click += new System.EventHandler(this.submitComment_Click);
+            // 
+            // feedBack
+            // 
+            this.feedBack.AutoSize = true;
+            this.feedBack.Location = new System.Drawing.Point(18, 426);
+            this.feedBack.Name = "feedBack";
+            this.feedBack.Size = new System.Drawing.Size(0, 13);
+            this.feedBack.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 509);
+            this.Controls.Add(this.feedBack);
+            this.Controls.Add(this.submitComment);
+            this.Controls.Add(this.commentBox);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.alwaysOnTop);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
@@ -201,6 +271,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -220,6 +291,12 @@
         private System.Windows.Forms.ColumnHeader IDCol;
         private System.Windows.Forms.ColumnHeader NameCol;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox alwaysOnTop;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox commentBox;
+        private System.Windows.Forms.Button submitComment;
+        private System.Windows.Forms.Label feedBack;
     }
 }
 

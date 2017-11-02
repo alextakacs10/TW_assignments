@@ -14,6 +14,10 @@ namespace ProcessNote
     public partial class Form1 : Form
     {
         Process[] processes = Process.GetProcesses();
+        Dictionary<int, string> comments = new Dictionary<int, string>();
+        Boolean commentSaved;
+        
+        
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +26,7 @@ namespace ProcessNote
 
         private void Form1_Load(object sender, EventArgs e)
         {
- 
+            
         }
 
         private void populateList()
@@ -41,13 +45,36 @@ namespace ProcessNote
             populateList();
         }
 
-        private string listView1_Click(object sender, EventArgs e)
+        private void listView1_Click(object sender, EventArgs e)
         {
+            commentBox.Enabled = true;
+            submitComment.Enabled = true;
+            if (commentBox.Text == "")
+            {
+                feedBack.Text = "No comment added yet.";
+            }
             int processID = Convert.ToInt32(listView1.SelectedItems[0].Text);
             Process selectedProcess = Process.GetProcessById(processID);
-            string CPUusage;
+            // set CUP usage
+            float CPUu = (float)getCPUUsage();
+            string CPUUsage = CPUu.ToString("0.00") + "%";
+
+            CPUBox.Text = CPUUsage;
+            
             // set Memory usage
             MemoryBox.Text = (selectedProcess.WorkingSet64 / 1024000).ToString() + " MB";
+
+            // set Running time
+            try
+            {
+                DateTime startTime = selectedProcess.StartTime;
+                DateTime currentTime = DateTime.Now;
+                TimeSpan runningTime = (currentTime - startTime);
+                RunningTimeBox.Text = runningTime.TotalSeconds.ToString("0") + " s";
+            } catch (Exception)
+            {
+                RunningTimeBox.Text = "N/A";
+            }       
 
             // set Starting time
             try
@@ -60,21 +87,66 @@ namespace ProcessNote
             }
         }
 
-        private void ProcessCPUThread(object sender, EventArgs e)
+        private object getCPUUsage()
         {
-            PerformanceCounter theCPUCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
-            Timer t = new Timer();
-            t.Tick += new EventHandler(ProcessCPUThread);
-            string usage;
+            PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% processor Time", "_Total");
+            dynamic firstValue = cpuCounter.NextValue();
+            System.Threading.Thread.Sleep(1000);
+            dynamic secondValue = cpuCounter.NextValue();
 
+            return secondValue;
+        }
+
+
+
+        private void alwaysOnTop_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (alwaysOnTop.Checked)
+            {
+                this.TopMost = true;
+            }
+            else
+            {
+                this.TopMost = false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (commentSaved == true)
+            {
+                Close();
+            } else
+            {
+                Form2 notSaved = new Form2();
+                notSaved.Show();
+            }
+                
+        }
+
+        private void submitComment_Click(object sender, EventArgs e)
+        {
+            int processID = Convert.ToInt32(listView1.SelectedItems[0].Text);
+            Process selectedProcess = Process.GetProcessById(processID);
+            commentSaved = true;
             try
             {
-                Int32 processCPU = Convert.ToInt32(theCPUCounter.NextValue());
-                usage = (processCPU / Environment.ProcessorCount).ToString();
-            } catch (Exception)
+                comments.Add(processID, commentBox.Text);
+                feedBack.Text = "Comment saved.";
+            }
+            catch (ArgumentException)
             {
-                 usage = "N/A";
+                feedBack.Text = "Comment overwritten.";
             }
-            }
+
+                
+            
+        }
+
+        private void commentBox_TextChanged(object sender, EventArgs e)
+        {
+            commentSaved = false;
+            feedBack.Text = "Don't forget to submit your comment.";
+        }
     }
 }
