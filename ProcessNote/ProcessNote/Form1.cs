@@ -55,6 +55,9 @@ namespace ProcessNote
             }
             int processID = Convert.ToInt32(listView1.SelectedItems[0].Text);
             Process selectedProcess = Process.GetProcessById(processID);
+
+            ThreadButton.Text = "Show Threads (" + selectedProcess.Threads.Count.ToString() + ")";
+
             // set CUP usage
             float CPUu = (float)getCPUUsage();
             string CPUUsage = CPUu.ToString("0.00") + "%";
@@ -121,6 +124,7 @@ namespace ProcessNote
                 Form2 notSaved = new Form2();
                 notSaved.Show();
             }
+            
                 
         }
 

@@ -44,7 +44,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.alwaysOnTop = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ThreadButton = new System.Windows.Forms.Button();
             this.commentBox = new System.Windows.Forms.TextBox();
             this.submitComment = new System.Windows.Forms.Button();
             this.feedBack = new System.Windows.Forms.Label();
@@ -213,14 +213,14 @@
             this.alwaysOnTop.UseVisualStyleBackColor = true;
             this.alwaysOnTop.CheckStateChanged += new System.EventHandler(this.alwaysOnTop_CheckStateChanged);
             // 
-            // button3
+            // ThreadButton
             // 
-            this.button3.Location = new System.Drawing.Point(148, 13);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(237, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Show Threads";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ThreadButton.Location = new System.Drawing.Point(148, 13);
+            this.ThreadButton.Name = "ThreadButton";
+            this.ThreadButton.Size = new System.Drawing.Size(237, 23);
+            this.ThreadButton.TabIndex = 4;
+            this.ThreadButton.Text = "Show Threads";
+            this.ThreadButton.UseVisualStyleBackColor = true;
             // 
             // commentBox
             // 
@@ -259,7 +259,7 @@
             this.Controls.Add(this.feedBack);
             this.Controls.Add(this.submitComment);
             this.Controls.Add(this.commentBox);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.ThreadButton);
             this.Controls.Add(this.alwaysOnTop);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -293,7 +293,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox alwaysOnTop;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button ThreadButton;
         private System.Windows.Forms.TextBox commentBox;
         private System.Windows.Forms.Button submitComment;
         private System.Windows.Forms.Label feedBack;

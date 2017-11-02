@@ -16,8 +16,7 @@ namespace ProcessNote
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Form1 mainForm = new Form1();
-            Application.Run(mainForm);
+            Application.Run(new Form1());
         }
     }
 }
