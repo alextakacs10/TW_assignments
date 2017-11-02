@@ -47,14 +47,22 @@ namespace ProcessNote
 
         private void listView1_Click(object sender, EventArgs e)
         {
+            int processID = Convert.ToInt32(listView1.SelectedItems[0].Text);
+            Process selectedProcess = Process.GetProcessById(processID);
+
             commentBox.Enabled = true;
+            commentBox.Text = "";
             submitComment.Enabled = true;
-            if (commentBox.Text == "")
+            if (comments.ContainsKey(processID) == false)
             {
                 feedBack.Text = "No comment added yet.";
             }
-            int processID = Convert.ToInt32(listView1.SelectedItems[0].Text);
-            Process selectedProcess = Process.GetProcessById(processID);
+            else if(comments.ContainsKey(processID))
+            {
+                commentBox.Text = comments[processID];
+                commentSaved = true;
+            }
+             
 
             ThreadButton.Text = "Show Threads (" + selectedProcess.Threads.Count.ToString() + ")";
 
@@ -149,7 +157,16 @@ namespace ProcessNote
 
         private void commentBox_TextChanged(object sender, EventArgs e)
         {
+            int processID = Convert.ToInt32(listView1.SelectedItems[0].Text);
+            Process selectedProcess = Process.GetProcessById(processID);
+
             commentSaved = false;
+            if (comments.ContainsKey(processID))
+            {
+                commentBox.Text = comments[processID];
+                commentSaved = true;
+            }
+            
             feedBack.Text = "Don't forget to submit your comment.";
         }
     }
